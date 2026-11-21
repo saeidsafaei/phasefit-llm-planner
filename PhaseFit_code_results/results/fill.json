@@ -1,0 +1,14 @@
+{
+ "ABSTRACT": "Energy increasingly limits the serving of large language models (LLMs) under latency service-level objectives (SLOs). Each request passes through a compute-bound prefill phase and a memory-bound decode phase, and the accelerators of the 2024–2026 generation differ widely in compute, memory and native numeric formats. We ask which accelerator, numeric precision and parallelism each phase of a disaggregated deployment should use. We present PhaseFit, a planner built on a phase-aware, cross-vendor performance and power model that covers grouped-query and multi-head latent attention, mixture-of-experts routing and FP8/FP4 formats. Fitted on 22 public measurements, the model predicts 32 held-out measurements, including an unseen model and vendor, with a mean error of 19%. We show that under disaggregation the planning problem separates into two per-phase problems. PhaseFit solves them by analytical screening and trace-driven simulation, and also plans fleets that mix scarce new accelerators with older ones. On the Azure LLM inference traces and an MLPerf-matched reasoning workload, across three model families and seven accelerators, disaggregation reduced energy by 11–42% relative to the best colocated deployment, and native FP4 reduced it by a further 15–23%. Contrary to earlier studies, assigning different accelerators to the two phases saved at most 4% in greenfield clusters, because the newest parts lead in both energy per FLOP and energy per byte. In brownfield fleets, by contrast, placement mattered. PhaseFit saved 17–50% for a chat service by assigning new GPUs to prefill and 50–57% for a reasoning service by assigning them to decode, where a Splitwise-style rule saved nothing.",
+ "G_DISAGG": "11–42%",
+ "G_FP4": "15–23%",
+ "G_BROWN_E": "was reversed: new B200s saved 50–54% in decode and only 3% in prefill",
+ "G_SPLIT_SHARE": "56%",
+ "G_UTIL_LOW": "26–44%",
+ "C_DISAGG": "11–42%",
+ "C_FP4": "15–23%",
+ "C_BROWN": "17–50% on the conversational workload and 50–57% on the reasoning workload",
+ "C_SPLIT": "10–32% and at most 0%, respectively,",
+ "AUTHOR_1": "Mohammad Saeid Safaei",
+ "AUTHOR_2": "Mostafa Ghobaei-Arani"
+}
